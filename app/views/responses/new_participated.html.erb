@@ -1,0 +1,107 @@
+<!-- Validation failure messages -->
+<% if @response.errors.any? %>
+  <% @response.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Share Feedback with Kellogg Competitions for <%= @competition_name %> </h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_response" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for interest_indication_id -->
+      <div class="form-group">
+        <label for="interest_indication_id" class="control-label">
+        </label>
+
+        <input type="hidden" id="interest_indication_id" name="interest_indication_id" class="form-control" value="<%= @interest_indication.id %>">
+      </div>
+
+      <!-- Label and input for outcome -->
+      <div class="form-group">
+        <label class="control-label">
+          Please select the outcome of your interest in and participation with this competition:
+        <ul>
+        <div><label for="outcome" class="radio-inline">
+          <input type="radio" name="outcome" id="outcome" value="Entered Competition"> Entered the competition but did not advance
+        </label></div>
+
+        <div><label for="outcome" class="radio-inline">
+          <input type="radio" name="outcome" id="outcome" value="Finalist"> Selected as a finalist in the competition
+        </label></div>
+
+        <div><label for="outcome" class="radio-inline">
+          <input type="radio" name="outcome" id="outcome" value="2nd-3rd"> Placed 2nd or 3rd Overall
+        </label></div>
+
+        <div><label for="outcome" class="radio-inline">
+          <input type="radio" name="outcome" id="outcome" value="Won"> Won 1st Place Overall
+        </label></div>
+      </label>
+      </ul>
+      </div>
+
+
+
+      <!-- Label and input for likely_to_recommend -->
+      <div class="form-group">
+        <label for="likely_to_recommend" class="control-label">
+          How likely are you to recommend this competition to a current Kellogg student?
+        </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="1"> 1
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="2"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="3"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="4"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="5"> 5
+      </label>
+    </div>
+
+
+          <!-- Label and input for improvement_suggestions -->
+          <div class="form-group">
+            <label for="improvement_suggestions" class="control-label">
+              What is the most important reason for your score?
+            </label>
+
+            <textarea id="improvement_suggestions" name="improvement_suggestions" placeholder="Please share the most imporant reason(s) for your score." class="form-control" rows="3"><%= @response.improvement_suggestions %></textarea>
+          </div>
+
+      <!-- Label and input for do_again -->
+      <div class="checkbox">
+        <div><strong>Would you participate in this competition again?</strong></div>
+        <div>
+        <label for="do_again">
+
+          <div><input type="checkbox" id="do_again" name="do_again" value="1" <%= "checked" if @response.do_again %>> </div>
+        Yes I would participate in this competition again!
+      </label>
+      </div>
+      </div>
+
+
+      <button class="btn btn-success">
+        Submit Response
+      </button>
+      or
+      <a href="/responses">Cancel</a>
+    </form>
+  </div>
+</div>

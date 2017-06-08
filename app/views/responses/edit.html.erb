@@ -1,0 +1,76 @@
+<!-- Validation failure messages -->
+<% if @response.errors.any? %>
+  <% @response.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Response #<%= @response.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_response/<%= @response.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for interest_indication_id -->
+      <div class="form-group">
+        <label for="interest_indication_id" class="control-label">
+          Interest indication
+        </label>
+
+        <%= select_tag(:interest_indication_id, options_from_collection_for_select(InterestIndication.all, :id, :competition_name, @response.interest_indication_id), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for outcome -->
+      <div class="form-group">
+        <label for="outcome" class="control-label">
+          Outcome
+        </label>
+
+        <input type="text" id="outcome" name="outcome" placeholder="Outcome" class="form-control" value="<%= @response.outcome %>">
+      </div>
+
+      <!-- Label and input for likely_to_recommend -->
+      <div class="form-group">
+        <label for="likely_to_recommend" class="control-label">
+          How likely are you to recommend this competition to a current Kellogg student?
+        </label>
+
+        <input type="text" id="likely_to_recommend" name="likely_to_recommend" placeholder="Likely to recommend" class="form-control" value="<%= @response.likely_to_recommend %>">
+      </div>
+
+      <!-- Label and input for do_again -->
+      <div class="checkbox">
+        <div><strong>Would you participate in this competition again?</strong></div>
+        <div>
+        <label for="do_again">
+
+          <div><input type="checkbox" id="do_again" name="do_again" value="1" <%= "checked" if @response.do_again %>> </div>
+        Yes I would participate in this competition again!
+      </label>
+      </div>
+      </div>
+
+      <!-- Label and input for improvement_suggestions -->
+      <div class="form-group">
+        <label for="improvement_suggestions" class="control-label">
+          Improvement suggestions
+        </label>
+
+        <textarea id="improvement_suggestions" name="improvement_suggestions" placeholder="Improvement suggestions" class="form-control" rows="3"><%= @response.improvement_suggestions %></textarea>
+      </div>
+
+      <button class="btn btn-warning">
+        Update Response
+      </button>
+      or
+      <a href="/responses/<%= @response.id %>">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h3>Feedback response for <%= InterestIndication.find_by( {:id => @response.interest_indication_id}).competition_name %></h3>
+  <p>by  <%= InterestIndication.find_by( {:id => @response.interest_indication_id}).email_address%></p>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-">
+    <dl>
+      <dt>The outcome of interest in and participation with this competition:</dt>
+      <dd><%= @response.outcome %></dd>
+
+      <dt>Would you partipate in this competition again?</dt>
+      <dd><%= @response.do_again %></dd>
+
+</dl>
+<dl>
+
+      <dt>How likely are you to recommend this competition to a current Kellogg student?</dt>
+      <dd><%= @response.likely_to_recommend %> / 5 </dd>
+
+
+      <dt><%=@outcometext%></dt>
+      <dd> <%=@response.improvement_suggestions %> </dd>
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/responses" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/responses/<%= @response.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_response/<%= @response.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

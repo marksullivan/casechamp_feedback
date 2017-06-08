@@ -1,0 +1,92 @@
+<!-- Validation failure messages -->
+<% if @response.errors.any? %>
+  <% @response.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Share Feedback with Kellogg Competitions for <%= @competition_name %> </h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_response" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for improvement_suggestions -->
+      <div class="form-group">
+        <label for="improvement_suggestions" class="control-label">
+          What prevented you from participating in the competition even though you indicated interest in it?
+        </label>
+
+        <textarea id="improvement_suggestions" name="improvement_suggestions" placeholder="Please share your reason(s) for not moving forward with the competition." class="form-control" rows="3"><%= @response.improvement_suggestions %></textarea>
+      </div>
+
+      <!-- Label and input for likely_to_recommend -->
+      <div class="form-group">
+
+        <label for="likely_to_recommend" class="control-label">
+          How likely are you to recommend this competition to a current Kellogg student?
+        </label>
+
+        <!--<input type="text" id="likely_to_recommend" name="likely_to_recommend" placeholder="Likely to recommend" class="form-control" value="<%= @response.likely_to_recommend %>">
+        -->
+        <ul>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="1"> 1
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="2"> 2
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="3"> 3
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="4"> 4
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="likely_to_recommend" id="likely_to_recommend" value="5"> 5
+      </label>
+    </div>
+
+      <!-- Label and input for interest_indication_id -->
+      <div class="form-group">
+        <label for="interest_indication_id" class="control-label">
+        </label>
+
+        <input type="hidden" id="interest_indication_id" name="interest_indication_id" class="form-control" value="<%= @interest_indication.id %>">
+      </div>
+
+      <!-- Label and input for outcome -->
+      <div class="form-group">
+          <label for="outcome" class="control-label">
+            <input type="hidden" name="outcome" id="outcome" class="form" value="DNP">
+          </label>
+        </div>
+
+
+
+
+
+      <!-- Label and input for do_again -->
+      <div class="checkbox">
+        <label for="do_again">
+          <input type="hidden" id="do_again" name="do_again" value="0" <%= "checked" if @response.do_again %>>
+        </label>
+      </div>
+
+
+
+      <button class="btn btn-success">
+        Submit Response
+      </button>
+      or
+      <a href="/responses">Cancel</a>
+    </form>
+  </div>
+</div>

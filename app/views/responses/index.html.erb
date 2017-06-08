@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>
+    Responses
+  </h1>
+  <%= link_to 'Download CSV list', responses_path(format: :csv) %>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Interested in</th>
+        <th>Outcome</th>
+        <th>Net Promoter Score</th>
+        <th>Reason for NPS</th>
+        <th>Participate again?</th>
+        <th>Actions</th>
+      </tr>
+
+
+
+      <% @responses.each do |response| %>
+      <tr>
+        <td><a href="/interest_indications/<%= response.interest_indication_id %>"><%= InterestIndication.find_by( {:id => response.interest_indication_id}).competition_name %></a></td>
+        <td><%= response.outcome %></td>
+        <td><%= response.likely_to_recommend %></td>
+        <td><%= response.improvement_suggestions %></td>
+        <td><%= response.do_again %></td>
+        <td>
+          <a href="/responses/<%= response.id %>" class="btn btn-primary">Show</a>
+          <a href="/responses/<%= response.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_response/<%= response.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
