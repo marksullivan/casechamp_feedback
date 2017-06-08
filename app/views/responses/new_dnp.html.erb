@@ -18,21 +18,14 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for interest_indication_id -->
+      <!-- Label and input for improvement_suggestions -->
       <div class="form-group">
-        <label for="interest_indication_id" class="control-label">
+        <label for="improvement_suggestions" class="control-label">
+          What prevented you from participating in the competition even though you indicated interest in it?
         </label>
 
-        <input type="hidden" id="interest_indication_id" name="interest_indication_id" class="form-control" value="<%= @interest_indication.id %>">
+        <textarea id="improvement_suggestions" name="improvement_suggestions" placeholder="Please share your reason(s) for not moving forward with the competition." class="form-control" rows="3"><%= @response.improvement_suggestions %></textarea>
       </div>
-
-      <!-- Label and input for outcome -->
-      <div class="form-group">  
-          <label for="outcome" class="control-label">
-            <input type="hidden" name="outcome" id="outcome" class="form" value="DNP">
-          </label>
-        </div>
-
 
       <!-- Label and input for likely_to_recommend -->
       <div class="form-group">
@@ -61,6 +54,24 @@
       </label>
     </div>
 
+      <!-- Label and input for interest_indication_id -->
+      <div class="form-group">
+        <label for="interest_indication_id" class="control-label">
+        </label>
+
+        <input type="hidden" id="interest_indication_id" name="interest_indication_id" class="form-control" value="<%= @interest_indication.id %>">
+      </div>
+
+      <!-- Label and input for outcome -->
+      <div class="form-group">
+          <label for="outcome" class="control-label">
+            <input type="hidden" name="outcome" id="outcome" class="form" value="DNP">
+          </label>
+        </div>
+
+
+
+
 
       <!-- Label and input for do_again -->
       <div class="checkbox">
@@ -69,14 +80,7 @@
         </label>
       </div>
 
-      <!-- Label and input for improvement_suggestions -->
-      <div class="form-group">
-        <label for="improvement_suggestions" class="control-label">
-          Why did you not participate in the competition even though you indicated interest in it?
-        </label>
 
-        <textarea id="improvement_suggestions" name="improvement_suggestions" placeholder="Please share your reason(s) for not moving forward with the competition." class="form-control" rows="3"><%= @response.improvement_suggestions %></textarea>
-      </div>
 
       <button class="btn btn-success">
         Submit Response

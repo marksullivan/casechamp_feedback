@@ -1,5 +1,5 @@
 class InterestIndication < ApplicationRecord
 
-  has_many :interest_outcomes, :class_name => "Response", :dependent => :nullify
+  has_one :interest_outcome, :class_name => "Response", :dependent => :nullify
 
 end

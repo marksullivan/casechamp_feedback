@@ -11,19 +11,19 @@
   <div class="col-md-12">
     <table class="table table-striped table-hover">
       <tr>
-        <th>Interested?</th>
         <th>Competition name</th>
         <th>Email address</th>
+        <th>Interested?</th>
         <th>End date</th>
         <th>Actions</th>
-        <th>Feedback?</th>
+        <th>Feedback (View = Complete)</th>
       </tr>
 
       <% @interest_indications.each do |interest_indication| %>
       <tr>
-        <td><%= interest_indication.interest %></td>
         <td><%= interest_indication.competition_name %></td>
         <td><%= interest_indication.email_address %></td>
+        <td><%= interest_indication.interest %></td>
         <td><%= interest_indication.end_date %></td>
         <td>
           <a href="/interest_indications/<%= interest_indication.id %>" class="btn btn-primary">Show</a>
@@ -31,11 +31,20 @@
           <a href="/interest_indications/<%= interest_indication.id %>/remove_interest" class="btn btn-danger">Change Interest</a>
         </td>
 
-        <td> <a href="/get_feedback/<%= interest_indication.id %>"> Share Feedback </a></td>
+        <td>
+          <% if interest_indication.interest == nil%>
+          N/A - removed interest
 
+          <% elsif @responses.exists?(interest_indication_id: interest_indication.id) == false%>
+          <a href ="get_feedback/<%=interest_indication.id%>" class="btn btn-success">Request Feedback</a>
+        <%else%>
+          <a href ="responses/<%=Response.find_by( {:interest_indication_id => interest_indication.id}).id%>">View Feedback</a>
+        <%end%>
+        </td>
 
       </tr>
-      <% end %>
+      <%end%>
+
     </table>
   </div>
   <a href="/interest_indications/new" class="btn btn-success">Add an interest indication to this table</a>

@@ -1,0 +1,5 @@
+<%- headers = ['Outcome', 'Likely to Recommend','Reason for Score' 'Do Again?'] -%>
+<%= CSV.generate_line headers %>
+<%- @responses.each do |response| -%>
+<%= CSV.generate_line([response.outcome, response.likely_to_recommend, response.improvement_suggestions, response.do_again, ]) -%>
+<%- end -%>

@@ -2,6 +2,8 @@
   <h1>
     Responses
   </h1>
+  <%= link_to 'Download CSV list', responses_path(format: :csv) %>
+
 </div>
 
 <div class="row">
@@ -10,11 +12,13 @@
       <tr>
         <th>Interested in</th>
         <th>Outcome</th>
-        <th>NPS Recommend?</th>
+        <th>Net Promoter Score</th>
         <th>Reason for NPS</th>
-        <th>Enter again?</th>
+        <th>Participate again?</th>
         <th>Actions</th>
       </tr>
+
+
 
       <% @responses.each do |response| %>
       <tr>

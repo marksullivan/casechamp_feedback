@@ -1,12 +1,15 @@
 class InterestIndicationsController < ApplicationController
   def index
     @interest_indications = InterestIndication.all
+    @responses = Response.all
 
     render("interest_indications/index.html.erb")
   end
 
   def show
     @interest_indication = InterestIndication.find(params[:id])
+    @responses = Response.all
+
     @feedback = Response.find_by( {:interest_indication_id => @interest_indication.id})
 
     render("interest_indications/show.html.erb")
@@ -35,7 +38,7 @@ class InterestIndicationsController < ApplicationController
     save_status = @interest_indication.save
 
     if save_status == true
-      redirect_to("/interest_indications/#{@interest_indication.id}", :notice => "Interest indication created successfully.")
+      redirect_to("/interest_indications/", :notice => "Interest indication created successfully.")
     else
       render("interest_indications/new.html.erb")
     end

@@ -7,6 +7,14 @@ class ResponsesController < ApplicationController
   def index
     @responses = Response.all
 
+    respond_to do |format|
+      format.html
+      format.csv do
+     headers['Content-Disposition'] = "attachment; filename=\"response-list.csv\""
+     headers['Content-Type'] ||= 'text/csv'
+       end
+     end
+
     render("responses/index.html.erb")
   end
 
