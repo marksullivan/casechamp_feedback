@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "starter_generators", :github => "raghubetina/starter_generators"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.3'
@@ -21,6 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -34,6 +36,25 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'sdoc', '~> 0.4.0', group: :doc
+
+
+
+group :development, :test do
+  gem "dotenv-rails"
+  gem "factory_girl_rails"
+  gem "rspec-rails"
+  gem "pry-rails"
+end
+
+group :development do
+  gem "awesome_print"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "letter_opener"
+  gem "listen"
+  gem "wdm" if Gem.win_platform?
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

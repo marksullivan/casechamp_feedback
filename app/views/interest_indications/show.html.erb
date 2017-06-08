@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h3>Interest indicated for <%= @interest_indication.competition_name %></h3>
+  <p> by <%= @interest_indication.email_address %></p>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <dl class="dl-horizontal">
+      <dt>Feedback Provided?</dt>
+      <dd><%= @feedback %></dd>
+
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/interest_indications" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/interest_indications/<%= @interest_indication.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_interest_indication/<%= @interest_indication.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

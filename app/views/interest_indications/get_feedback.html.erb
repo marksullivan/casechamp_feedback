@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Follow up Survey for Kellogg Competitions</h1>
+</div>
+
+<div class="page-header">
+  <h3>You showed interest in the following competition:</h3>
+  <h3><strong><%= @interest_indication.competition_name %></strong></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12 mb-2">
+    <h3> Did you participate and/or enter in the competition?</h3>
+
+    <div class="btn-lrg">
+      <a href="/responses/new_participated/<%= @interest_indication.id %>" class="btn btn-success">
+        Yes, I participated in the competition.
+      </a>
+      <a href="/responses/new_dnp/<%= @interest_indication.id %>" class="btn btn-danger">
+        No, I ended up not moving forward with it.
+      </a>
+    </div>
+  </div>
+</div>
