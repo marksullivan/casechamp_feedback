@@ -10,7 +10,7 @@
       <dt>Feedback Status:</dt>
       <dd>
         <td>  <% if @responses.exists?(interest_indication_id: @interest_indication.id) == false%>
-          <a href ="get_feedback/<%=@interest_indication.id%>" class="btn btn-success">Request Feedback</a>
+          <a href ="/get_feedback/<%=@interest_indication.id%>" class="btn btn-success">Request Feedback</a>
         <%else%>
           <a href ="/responses/<%=Response.find_by( {:interest_indication_id => @interest_indication.id}).id%>">View Feedback</a>
         <%end%>
